@@ -1,0 +1,30 @@
+import Controller from '@ember/controller';
+import { action } from '@ember/object';
+import { tracked } from '@glimmer/tracking';
+import { task } from 'ember-concurrency';
+
+export default class IndexController extends Controller {
+  @tracked friendsEmail = '';
+
+  @task
+  *referFriend() {
+    if (this.friendsEmail) {
+      const response = yield fetch(
+        `https://blvckspades.netlify.app/.netlify/functions/refer?email=${this.friendsEmail}`,
+        {
+          headers: {
+            'Access-Control-Allow-Headers': '*',
+            'Access-Control-Allow-Origin': '*',
+            Accept: 'application/json',
+            'Content-Type': 'application/json',
+          },
+        }
+      );
+    }
+  }
+
+  @action
+  updateFriendsEmail(e: InputEvent) {
+    this.friendsEmail = (e.target as HTMLInputElement).value;
+  }
+}

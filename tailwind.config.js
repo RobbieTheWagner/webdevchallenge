@@ -2,7 +2,15 @@
 module.exports = {
   content: ['./app/**/*.{gjs,gts,hbs,html,js,ts}'],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        gold: '#857552',
+      },
+      fontFamily: {
+        body: ['Barlow', 'sans-serif'],
+        heading: ['Cinzel', 'serif'],
+      },
+    },
   },
-  plugins: [],
+  plugins: [require('@tailwindcss/forms')],
 };
