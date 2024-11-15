@@ -3,18 +3,16 @@ import mailchimp from '@mailchimp/mailchimp_marketing';
 
 export default async (req: Request, context: Context) => {
   if (req.method === 'OPTIONS') {
-    return Response.json(
-      {},
-      {
-        headers: {
-          'Access-Control-Allow-Headers': '*',
-          'Access-Control-Allow-Origin': '*',
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-        },
-      },
-    );
+    const res = new Response();
+
+    res.headers.set('Access-Control-Allow-Origin', '*');
+    res.headers.append('Access-Control-Allow-Headers', '*');
+    res.headers.append('Access-Control-Allow-Methods', '*');
+
+    return res;
   }
+
+  console.log(req);
 
   const email = new URL(req.url).searchParams.get('email');
   const apiKey = Netlify.env.get('MAILCHIMP_API_KEY');
@@ -27,6 +25,8 @@ export default async (req: Request, context: Context) => {
     email_address: email,
     status: 'pending',
   });
+
+  console.log(response);
 
   return Response.json(response, {
     headers: {
