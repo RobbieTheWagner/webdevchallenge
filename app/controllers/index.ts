@@ -10,16 +10,20 @@ export default class IndexController extends Controller {
   *referFriend() {
     if (this.friendsEmail) {
       const response = yield fetch(
-        `https://blvckspades.netlify.app/.netlify/functions/refer?email=${this.friendsEmail}`,
+        'https://blvckspades.netlify.app/.netlify/functions/refer',
         {
+          method: 'POST',
           headers: {
             'Access-Control-Allow-Headers': '*',
             'Access-Control-Allow-Origin': '*',
             Accept: 'application/json',
             'Content-Type': 'application/json',
           },
+          body: JSON.stringify({ email: this.friendsEmail }),
         }
       );
+
+      return response.json();
     }
   }
 
