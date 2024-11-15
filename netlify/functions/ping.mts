@@ -1,14 +1,15 @@
-import mailchimp from '@mailchimp/mailchimp_marketing';
 import type { Context } from '@netlify/functions';
 
-const MAILCHIMP_API_KEY = 'e3ba0bbb3ca8b87ce5d3ddf3c5c1f577-us7';
-
-mailchimp.setConfig({
-  apiKey: MAILCHIMP_API_KEY,
-  server: 'us7',
-});
-
 export default async (req: Request, context: Context) => {
-  const response = await mailchimp.ping.get();
-  return new Response(JSON.stringify(response));
+  const apiKey = Netlify.env.get('MAILCHIMP_API_KEY');
+  const response = await fetch('https://us7.api.mailchimp.com/3.0/ping', {
+    headers: {
+      Authorization: `Bearer ${apiKey}`,
+      'Content-Type': 'application/json',
+    },
+  });
+
+  const result = await response.json();
+
+  return Response.json(result);
 };
