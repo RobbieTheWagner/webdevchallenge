@@ -10,5 +10,17 @@ export default async (req: Request, context: Context) => {
     server: 'us7',
   });
 
-  return mailchimp.lists.getListMember('540898', md5(email.toLowerCase()));
+  const response = await mailchimp.lists.getListMember(
+    '540898',
+    md5(email.toLowerCase()),
+  );
+
+  return Response.json(response, {
+    headers: {
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Origin': '*',
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  });
 };

@@ -9,8 +9,17 @@ export default async (req: Request, context: Context) => {
     server: 'us7',
   });
 
-  return mailchimp.lists.addListMember('540898', {
+  const response = await mailchimp.lists.addListMember('540898', {
     email_address: email,
     status: 'pending',
+  });
+
+  return Response.json(response, {
+    headers: {
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Origin': '*',
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
   });
 };
