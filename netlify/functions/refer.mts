@@ -15,25 +15,28 @@ export default async (req: Request, context: Context) => {
   console.log(req);
 
   const email = new URL(req.url).searchParams.get('email');
-  const apiKey = Netlify.env.get('MAILCHIMP_API_KEY');
-  mailchimp.setConfig({
-    apiKey,
-    server: 'us7',
-  });
+  console.log(email);
+  if (email) {
+    const apiKey = Netlify.env.get('MAILCHIMP_API_KEY');
+    mailchimp.setConfig({
+      apiKey,
+      server: 'us7',
+    });
 
-  const response = await mailchimp.lists.addListMember('d3be14a71c', {
-    email_address: email,
-    status: 'pending',
-  });
+    const response = await mailchimp.lists.addListMember('d3be14a71c', {
+      email_address: decodeURIComponent(email),
+      status: 'pending',
+    });
 
-  console.log(response);
+    console.log(response);
 
-  return Response.json(response, {
-    headers: {
-      'Access-Control-Allow-Headers': '*',
-      'Access-Control-Allow-Origin': '*',
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-    },
-  });
+    return Response.json(response, {
+      headers: {
+        'Access-Control-Allow-Headers': '*',
+        'Access-Control-Allow-Origin': '*',
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
+    });
+  }
 };
