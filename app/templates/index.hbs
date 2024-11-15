@@ -1,0 +1,10 @@
+{{#each-in this.model as |suit cards|}}
+  <h2 class="text-3xl">{{suit}}</h2>
+  <div class="flex gap-4">
+    {{#each-in cards as |name owned|}}
+      <div class={{if (not owned) "brightness-50"}}>
+        {{svg-jar (concat (face-card name) "_of_" suit) width=100}}
+      </div>
+    {{/each-in}}
+  </div>
+{{/each-in}}

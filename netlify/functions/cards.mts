@@ -11,7 +11,7 @@ export default async (req: Request, context: Context) => {
   });
 
   const response = await mailchimp.lists.getListMember(
-    '540898',
+    'd3be14a71c',
     md5(email.toLowerCase()),
   );
 

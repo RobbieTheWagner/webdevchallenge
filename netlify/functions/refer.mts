@@ -9,7 +9,7 @@ export default async (req: Request, context: Context) => {
     server: 'us7',
   });
 
-  const response = await mailchimp.lists.addListMember('540898', {
+  const response = await mailchimp.lists.addListMember('d3be14a71c', {
     email_address: email,
     status: 'pending',
   });
