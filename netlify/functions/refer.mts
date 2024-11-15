@@ -12,10 +12,7 @@ export default async (req: Request, context: Context) => {
     return res;
   }
 
-  console.log(req);
-
   const email = new URL(req.url).searchParams.get('email');
-  console.log(email);
   if (email) {
     const apiKey = Netlify.env.get('MAILCHIMP_API_KEY');
     mailchimp.setConfig({
@@ -27,8 +24,6 @@ export default async (req: Request, context: Context) => {
       email_address: decodeURIComponent(email),
       status: 'subscribed',
     });
-
-    console.log(response);
 
     return Response.json(response, {
       headers: {

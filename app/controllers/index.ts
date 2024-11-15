@@ -9,21 +9,40 @@ export default class IndexController extends Controller {
   @task
   *referFriend() {
     if (this.friendsEmail) {
-      const response = yield fetch(
-        `/.netlify/functions/refer?email=${encodeURIComponent(this.friendsEmail)}`,
-        {
-          method: 'POST',
-          headers: {
-            'Access-Control-Allow-Headers': '*',
-            'Access-Control-Allow-Origin': '*',
-            Accept: 'application/json',
-            'Content-Type': 'application/json',
-          },
-        }
-      );
+      try {
+        const response = yield fetch(
+          `https://blvckspades.netlify.app/.netlify/functions/refer?email=${encodeURIComponent(this.friendsEmail)}`,
+          {
+            method: 'POST',
+            headers: {
+              'Access-Control-Allow-Headers': '*',
+              'Access-Control-Allow-Origin': '*',
+              Accept: 'application/json',
+              'Content-Type': 'application/json',
+            },
+          }
+        );
+
+        return yield response.json();
+      } catch {}
+    }
+  }
+
+  @task
+  *unlockCard() {
+    try {
+      const response = yield fetch('/.netlify/functions/unlock-card', {
+        method: 'POST',
+        headers: {
+          'Access-Control-Allow-Headers': '*',
+          'Access-Control-Allow-Origin': '*',
+          Accept: 'application/json',
+          'Content-Type': 'application/json',
+        },
+      });
 
       return yield response.json();
-    }
+    } catch {}
   }
 
   @action
