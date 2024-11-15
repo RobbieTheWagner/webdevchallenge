@@ -40,11 +40,11 @@ export default async (req: Request, context: Context) => {
     spades: JSON.parse(result.merge_fields.SPADES),
   };
 
-  for (const suit in cards) {
-    for (const card in cards[suit]) {
+  loop1: for (const suit in cards) {
+    loop2: for (const card in cards[suit]) {
       if (cards[suit][card] === false) {
         cards[suit][card] = true;
-        break;
+        break loop1;
       }
     }
   }
