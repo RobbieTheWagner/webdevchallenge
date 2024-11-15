@@ -23,6 +23,8 @@ export default class IndexController extends Controller {
           }
         );
 
+        this.unlockCard.perform();
+
         return yield response.json();
       } catch {}
     }
@@ -41,7 +43,8 @@ export default class IndexController extends Controller {
         },
       });
 
-      return yield response.json();
+      const result = yield response.json();
+      return result;
     } catch {}
   }
 

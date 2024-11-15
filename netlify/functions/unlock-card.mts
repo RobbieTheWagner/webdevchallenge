@@ -53,10 +53,12 @@ export default async (req: Request, context: Context) => {
     'd3be14a71c',
     md5(email.toLowerCase()),
     {
-      CLUBS: JSON.stringify(cards.clubs),
-      DIAMONDS: JSON.stringify(cards.diamonds),
-      HEARTS: JSON.stringify(cards.hearts),
-      SPADES: JSON.stringify(cards.spades),
+      merge_fields: {
+        CLUBS: JSON.stringify(cards.clubs),
+        DIAMONDS: JSON.stringify(cards.diamonds),
+        HEARTS: JSON.stringify(cards.hearts),
+        SPADES: JSON.stringify(cards.spades),
+      },
     },
   );
 
