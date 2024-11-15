@@ -10,5 +10,5 @@ mailchimp.setConfig({
 
 export default async (req: Request, context: Context) => {
   const response = await mailchimp.ping.get();
-  return new Response(response);
+  return new Response(JSON.stringify(response));
 };
