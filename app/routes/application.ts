@@ -6,6 +6,8 @@ export default class ApplicationRoute extends Route {
       'https://blvckspades.netlify.app/.netlify/functions/ping',
       {
         headers: {
+          'Access-Control-Allow-Headers': '*',
+          'Access-Control-Allow-Origin': '*',
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },

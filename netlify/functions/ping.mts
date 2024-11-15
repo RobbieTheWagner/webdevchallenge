@@ -13,5 +13,12 @@ export default async (req: Request, context: Context) => {
 
   const result = await response.json();
 
-  return Response.json(result);
+  return Response.json(result, {
+    headers: {
+      'Access-Control-Allow-Headers': '*',
+      'Access-Control-Allow-Origin': '*',
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+  });
 };
