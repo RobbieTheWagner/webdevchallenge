@@ -17,10 +17,10 @@ export default class IndexRoute extends Route {
     const result = await response.json();
 
     return {
-      clubs: JSON.parse(result.merge_fields.CLUBS.slice(1, -1)),
-      diamonds: JSON.parse(result.merge_fields.DIAMONDS.slice(1, -1)),
-      hearts: JSON.parse(result.merge_fields.HEARTS.slice(1, -1)),
-      spades: JSON.parse(result.merge_fields.SPADES.slice(1, -1)),
+      clubs: JSON.parse(result.merge_fields.CLUBS),
+      diamonds: JSON.parse(result.merge_fields.DIAMONDS),
+      hearts: JSON.parse(result.merge_fields.HEARTS),
+      spades: JSON.parse(result.merge_fields.SPADES),
     };
   }
 }
