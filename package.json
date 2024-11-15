@@ -28,6 +28,7 @@
   "dependencies": {
     "@mailchimp/mailchimp_marketing": "^3.0.80",
     "@netlify/functions": "^2.8.2",
+    "md5": "^2.3.0",
     "querystring": "^0.2.1"
   },
   "devDependencies": {
