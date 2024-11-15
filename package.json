@@ -25,6 +25,11 @@
     "test": "concurrently \"pnpm:lint\" \"pnpm:test:*\" --names \"lint,test:\"",
     "test:ember": "vite build --mode test && ember test --path dist"
   },
+  "dependencies": {
+    "@mailchimp/mailchimp_marketing": "^3.0.80",
+    "@netlify/functions": "^2.8.2",
+    "querystring": "^0.2.1"
+  },
   "devDependencies": {
     "@babel/core": "^7.25.2",
     "@babel/eslint-parser": "^7.25.9",
