@@ -25,7 +25,7 @@ export default async (req: Request, context: Context) => {
 
     const response = await mailchimp.lists.addListMember('d3be14a71c', {
       email_address: decodeURIComponent(email),
-      status: 'pending',
+      status: 'subscribed',
     });
 
     console.log(response);
